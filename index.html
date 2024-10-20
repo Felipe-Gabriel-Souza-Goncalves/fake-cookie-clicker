@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie clicker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/powerUps.css">
+</head>
+<body>
+    <div class="tudoPraEsquerda">
+        <div class="divCookieGrande">
+            <ul id="cookie">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <br><br>
+            <h1 id="contador">0 Cookies</h1>
+            <h3 id="cookies/s">0 Cookies por segundo</h3>
+            <br>
+        </div>
+        <table class="tabelaDeComprasProdutos">
+            <tr>
+                <th class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais1Cookie" onclick="compraMelhoria(upgrade1, 'qntUp1', 'precoUp1')">+ 1 Cookie</button></th>
+                <th class="qntUp" id="qntUp1">0</th>
+                <th class="precoCompra"><h2 id="precoUp1">5 cookies</h2></th>
+            </tr>
+            <tr>
+                <th class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais2Cookie" onclick="compraMelhoria(upgrade2, 'qntUp2','precoUp2')">+ 5 Cookie</button></th>
+                <th class="qntUp" id="qntUp2">0</th>
+                <th class="precoCompra"><h2 id="precoUp2">25 cookies</h2></th>
+            </tr>
+            <tr>
+                <th class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais2Cookie" onclick="compraMelhoria(upgrade3, 'qntUp3','precoUp3')">+5 Cookie/seg</button></th>
+                <th class="qntUp" id="qntUp3">0</th>
+                <th class="precoCompra"><h2 id="precoUp3">240 cookies</h2></th>
+            </tr>
+        </table>
+        <br><br><br>
+
+    </div>
+
+    <script src="scripts/script.js"></script>
+    <script src="scripts/conquistas.js"></script>
+    <script src="scripts/decoracoes.js"></script>
+    <script src="scripts/upgrades.js"></script>
+</body>
+</html>
