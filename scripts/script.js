@@ -15,7 +15,7 @@ var upgrade3 = {
 }
 
 pegarLocalStorage()
-setInterval(salvarTemporario, 60000)
+setInterval(salvarTemporario, 2000)
 setInterval(cookiesPorSeg, 1000)
 
 document.getElementById('cookie').onclick = function click(){
@@ -38,7 +38,6 @@ function compraMelhoria(obj1, qntUpgrade, precoUpgrade){
         obj1.melhoria +=1
         cookies-= obj1.preco
         obj1.preco += Math.floor(obj1.preco*0.08+1)
-        console.log(obj1.preco)
         document.getElementById('contador').innerHTML = cookies + " Cookies"
         document.getElementById(qntUpgrade).innerHTML = obj1.melhoria
         document.getElementById(precoUpgrade).innerHTML = obj1.preco + " cookies"
@@ -59,16 +58,32 @@ function pegarLocalStorage(){
     }
     if(localStorage.getItem("upgrade1QNTD") != null){
         upgrade1.melhoria = parseInt(localStorage.getItem("upgrade1QNTD"))
+        for(var i = 0; i<upgrade1.melhoria; i++){
+            upgrade1.preco += Math.floor((upgrade1.preco*0.08+1))
+            document.getElementById('qntUp1').innerHTML = upgrade1.melhoria
+            document.getElementById('precoUp1').innerHTML = upgrade1.preco + " cookies"
+        }
+
     }
     if(localStorage.getItem("upgrade2QNTD") != null){
         upgrade2.melhoria = parseInt(localStorage.getItem("upgrade2QNTD"))
+        for(var i = 0; i<upgrade2.melhoria; i++){
+            upgrade2.preco += Math.floor((upgrade2.preco*0.08+1))
+            document.getElementById('qntUp2').innerHTML = upgrade2.melhoria
+            document.getElementById('precoUp2').innerHTML = upgrade2.preco + " cookies"
+        }
+
     }
     if(localStorage.getItem("upgrade3QNTD") != null){
         upgrade3.melhoria = parseInt(localStorage.getItem("upgrade3QNTD"))
+        for(var i = 0; i<upgrade3.melhoria; i++){
+            upgrade3.preco += Math.floor((upgrade3.preco*0.08+1))
+            document.getElementById('qntUp3').innerHTML = upgrade3.melhoria
+            document.getElementById('precoUp3').innerHTML = upgrade3.preco + " cookies"
+        }
+
     }
-    compraMelhoria(upgrade1, 'qntUp1', 'precoUp1')
-    compraMelhoria(upgrade2, 'qntUp2', 'precoUp2')
-    compraMelhoria(upgrade3, 'qntUp3', 'precoUp3')
+
     cookiesPorSeg()
 }
 

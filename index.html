@@ -7,20 +7,25 @@
     <title>Cookie clicker</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/powerUps.css">
+    <link rel="stylesheet" href="css/animacoes.css">
 </head>
 <body>
-    <div class="tudoPraEsquerda">
+    <div id="tudoPraEsquerda">
         <div class="divCookieGrande">
-            <ul id="cookie">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
+            <a id="teste">
+                <ul id="cookie">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </a>
             <br><br>
-            <h1 id="contador">0 Cookies</h1>
-            <h3 id="cookies/s">0 Cookies por segundo</h3>
+            <div>
+                <h1 id="contador">0 Cookies</h1>
+                <h3 id="cookies/s">0 Cookies por segundo</h3>
+            </div>
             <br>
         </div>
         <table class="tabelaDeComprasProdutos">
@@ -43,6 +48,27 @@
         <br><br><br>
 
     </div>
+    <div id="tudoPraDireita">
+        <br>
+        <button class="botaoInformacao" onclick="document.getElementById('divConfiguracoes').style.display = 'block'">Configurações</button>
+        <br>
+        <button class="botaoInformacao" onclick="document.getElementById('divEstatisticas').style.display = 'block'">Estatísticas</button>
+
+
+        <!-- div para configurações -->
+        <div id="divConfiguracoes">
+            <button class="botaoFecharDiv" onclick="document.getElementById('divConfiguracoes').style.display = 'none'">Fechar</button>
+
+            <br><br><br><br><br><br><br><br><h1>EM PROGRESSO...</h1>
+        </div>
+        <!-- div para estatísticas -->
+        <div id="divEstatisticas">
+            <button class="botaoFecharDiv" onclick="document.getElementById('divEstatisticas').style.display = 'none'" >Fechar</button>
+
+            <br><br><br><br><br><br><br><br><h1>EM PROGRESSO...</h1>
+        </div>
+    </div>
+
 
     <script src="scripts/script.js"></script>
     <script src="scripts/conquistas.js"></script>

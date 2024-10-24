@@ -1,0 +1,13 @@
+@keyframes clickCookie{
+    0%{scale: 1;}
+    50%{scale: 1.2;}
+    100%{scale: 1;}
+}
+
+@keyframes clickCompraUpgrade{
+    0%{
+        background-color: rgb(151, 151, 151);
+        transform: translateY(-2px);
+        }
+
+}
