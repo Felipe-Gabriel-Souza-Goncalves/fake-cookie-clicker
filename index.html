@@ -24,7 +24,7 @@
             <br><br>
             <div>
                 <h1 id="contador">0 Cookies</h1>
-                <h3 id="cookies/s">0 Cookies por segundo</h3>
+                <h2 id="cookies/s">0 Cookies por segundo</h2>
             </div>
             <br>
         </div>
@@ -60,12 +60,23 @@
             <button class="botaoFecharDiv" onclick="document.getElementById('divConfiguracoes').style.display = 'none'">Fechar</button>
 
             <br><br><br><br><br><br><br><br><h1>EM PROGRESSO...</h1>
+            <button>REINICIAR PROGRESSO</button>
         </div>
         <!-- div para estatísticas -->
         <div id="divEstatisticas">
             <button class="botaoFecharDiv" onclick="document.getElementById('divEstatisticas').style.display = 'none'" >Fechar</button>
 
+
             <br><br><br><br><br><br><br><br><h1>EM PROGRESSO...</h1>
+            <h2>Cookies atuais: <span id="estatisticasCookies">0</span></h2>
+            <h2>Cookies total: <span id="estatisticasCookiesTotal">0</span></h2>
+            <h2>Cookies por clique: <span id="estatisticasCookiesPorClique">1</span></h2>
+            <h2>Cookies por segundo: <select name="selectCookiesPorSegundo" id="">
+                <option value="upgrade3">+5 Cookies/seg</option>
+                <option value="total">Total</option>
+            </select> <span id="estatisticasCookiesPorSegundo">0</span></h2>
+            <h2>Cliques: <span id="estatisticasCliquesTotais">0</span> </h2>
+            <h2>Melhorias compradas: <span id="estatisticasMelhoriasCompradas">0</span></h2>
         </div>
     </div>
 

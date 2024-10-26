@@ -1,31 +1,42 @@
 let cookies = 0;
-let cookiesPS;
+let cookiesPS = 0;
+
 var upgrade1 = {
     melhoria: 0,
     preco: 5,
+    indiceAumento: 0.18,
 }
 var upgrade2 = {
     melhoria: 0,
     preco: 25,
+    indiceAumento: 0.7,
 }
 var upgrade3 = {
     melhoria: 0,
     preco: 240,
-    porSegundo:5
+    porSegundo:5,
+    indiceAumento: 0.06,
 }
+let cliques = 0;
+let cookieTotal = 0;
+let poderClique = parseInt(1 +(upgrade1.melhoria*1) + (upgrade2.melhoria*5))
 
-pegarLocalStorage()
-setInterval(salvarTemporario, 2000)
-setInterval(cookiesPorSeg, 1000)
+
+
+
 
 document.getElementById('cookie').onclick = function click(){
-    cookies += 1 +(upgrade1.melhoria*1) + (upgrade2.melhoria*5)
+    poderClique = parseInt(1 +(upgrade1.melhoria*1) + (upgrade2.melhoria*5))
+    cookies += poderClique
     document.getElementById('contador').innerHTML = cookies + " Cookies"
+    cliques += 1
+    cookieTotal += 1 + (upgrade1.melhoria*1) + (upgrade2.melhoria*5)
 
 }
 function cookiesPorSeg(){
     cookiesPS = (upgrade3.melhoria*upgrade3.porSegundo)
     cookies +=cookiesPS
+    cookieTotal +=cookiesPS
     if(cookies != 0){
         document.getElementById('contador').innerHTML = cookies + " Cookies"
         document.getElementById('cookies/s').innerHTML = cookiesPS + " Cookies por segundo"
@@ -37,7 +48,7 @@ function compraMelhoria(obj1, qntUpgrade, precoUpgrade){
     if(cookies >=obj1.preco){
         obj1.melhoria +=1
         cookies-= obj1.preco
-        obj1.preco += Math.floor(obj1.preco*0.08+1)
+        obj1.preco += Math.floor(obj1.preco*obj1.indiceAumento+1)
         document.getElementById('contador').innerHTML = cookies + " Cookies"
         document.getElementById(qntUpgrade).innerHTML = obj1.melhoria
         document.getElementById(precoUpgrade).innerHTML = obj1.preco + " cookies"
@@ -46,6 +57,7 @@ function compraMelhoria(obj1, qntUpgrade, precoUpgrade){
 
 function salvarTemporario(){
     localStorage.setItem("bancoCookie", cookies)
+    localStorage.setItem("cookieTotal", cookieTotal)
     localStorage.setItem("cookiePorSegundo", cookiesPS)
     localStorage.setItem("upgrade1QNTD", upgrade1.melhoria)
     localStorage.setItem("upgrade2QNTD", upgrade2.melhoria)
@@ -55,6 +67,7 @@ function salvarTemporario(){
 function pegarLocalStorage(){
     if(localStorage.getItem("bancoCookie") != null){
         cookies = parseInt(localStorage.getItem("bancoCookie"))
+        cookieTotal = parseInt(localStorage.getItem("cookieTotal"))
     }
     if(localStorage.getItem("upgrade1QNTD") != null){
         upgrade1.melhoria = parseInt(localStorage.getItem("upgrade1QNTD"))
@@ -84,7 +97,13 @@ function pegarLocalStorage(){
 
     }
 
+
     cookiesPorSeg()
 }
+
+
+pegarLocalStorage()
+setInterval(salvarTemporario, 2000)
+setInterval(cookiesPorSeg, 1000)
 
 
