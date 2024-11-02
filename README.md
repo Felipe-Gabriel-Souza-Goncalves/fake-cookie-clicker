@@ -21,3 +21,15 @@ Atualização 25_10_24:
       -Cookies por segundo
       -Cliques
       -Melhorias compradas
+
+Atualização 01_11_24:
+
+    **AUTO CLIQUE TEMPORÁRIO (qualquer tecla)
+    
+    -Documentação do código (js)
+    -Mudança do código para orientação a objetos
+    -Alternar entre comprar 1 ou o máximo de upgrades
+    -Mudanças técnicas de código para:
+        -localStorage
+        -cookiesPS  (cookies por segundo)
+        -poderClique (cookies por clique)
