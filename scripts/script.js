@@ -1,109 +1,169 @@
-let cookies = 0;
-let cookiesPS = 0;
-
-var upgrade1 = {
-    melhoria: 0,
-    preco: 5,
-    indiceAumento: 0.18,
-}
-var upgrade2 = {
-    melhoria: 0,
-    preco: 25,
-    indiceAumento: 0.7,
-}
-var upgrade3 = {
-    melhoria: 0,
-    preco: 240,
-    porSegundo:5,
-    indiceAumento: 0.06,
-}
+var cookies = 0;
+var cookiesPS = 0;
 let cliques = 0;
 let cookieTotal = 0;
-let poderClique = parseInt(1 +(upgrade1.melhoria*1) + (upgrade2.melhoria*5))
+let poderClique = 1;
+let max = false
+
+// classe para upgrades
+class Upgrades{
+
+    static numeroDeUpgrades = 0;
+
+    // Contar todos os upgrades criados quando o programa for rodade
+    // USO EM PROGRESSO!!
+    static contarUpgrades(params) {
+        this.numeroDeUpgrades = params.length
+        console.log(this.numeroDeUpgrades)
+    }
+
+    // construtor de upgrades
+    constructor(nome, preco, quantidade, taxaPreco, cps, cpc){
+        this.nome = nome 
+        this.preco = preco
+        this.quantidade = quantidade
+        this.taxaPreco = taxaPreco
+        this.cps = cps
+        this.cpc = cpc
+    }
+
+    // função para comprar upgrade passando id de 2 elementos HTML referente a quantidade/preco do upgrade
+    comprarUpgrade(idQntd, idPreco){
+        if(cookies >= this.preco){
+            cookies -= this.preco
+            this.preco = Math.floor(this.preco * this.taxaPreco)
+            this.quantidade++
+
+            document.getElementById('contador').innerHTML = cookies + " Cookies"
+
+            // mudar o html dos elementos passados no parametro
+            document.getElementById(idQntd).innerHTML = this.quantidade
+            document.getElementById(idPreco).innerHTML = this.preco + " cookies"
 
 
+            poderClique = 1
+            cookiesPS = 0
+
+            arrayUpgrades.forEach(element =>{
+                poderClique += element.cpc*element.quantidade
+                cookiesPS += element.cps*element.quantidade
+                // console.log(element.cps)
+            })
+
+            this.conquistasQntd()
+
+            if(max == true){
+                this.comprarUpgrade(idQntd, idPreco)
+            }
+        } 
+    }
+
+    // função para conquistas padrões de cada upgrade
+    // TESTE E IMPLEMENTAÇÃO EM PROGRESSO!
+    conquistasQntd(){
+        if(this.conquista == 0 && this.quantidade > 9){
+            this.conquista = 1
+           console.log("%c Conquista desbloqueada!","background-color: red;", `\n você comprou 10 ${this.nome}`)
+        }
+        if(this.conquista == 1 && this.quantidade > 49){
+            this.conquista = 2
+           console.log(`Conquista desbloqueada! \n você comprou 50 ${this.nome}!`)
+        }
+        if(this.conquista == 2 && this.quantidade > 99){
+            this.conquista = 3
+           console.log(`Conquista desbloqueada! \n você comprou 100 ${this.nome}!!!!!`)
+        }
+        if(this.conquista == 3 && this.quantidade > 199){
+            this.conquista = 4
+           console.log(`Conquista desbloqueada! \n você comprou 200 ${this.nome}!!!!!! 😎`)
+        }
+    }
+}
+
+// nome, preco, quantidade, taxa (>1), cps (cookie por segundo), cpc (cookie por clique) 
+const upgrade1 = new Upgrades("+1 Cookie", 5, 0, 1.2, 0, 1)
+const upgrade2 = new Upgrades("+5 Cookie", 25, 0, 1.4, 0, 5)
+const upgrade3 = new Upgrades("+5 Cookie/seg", 200, 0, 1.06, 5, 0)
+
+// array com todos os upgrades
+var arrayUpgrades = [upgrade1, upgrade2, upgrade3]
+
+// testes ↓
 
 
+// testes ↑
 
-document.getElementById('cookie').onclick = function click(){
-    poderClique = parseInt(1 +(upgrade1.melhoria*1) + (upgrade2.melhoria*5))
-    cookies += poderClique
+function clicarNoCookie(){
+    cookies +=poderClique + 1
     document.getElementById('contador').innerHTML = cookies + " Cookies"
     cliques += 1
-    cookieTotal += 1 + (upgrade1.melhoria*1) + (upgrade2.melhoria*5)
-
+    cookieTotal += poderClique
 }
+
+// Função de adicionar cookies por segundo ao banco de cookies
 function cookiesPorSeg(){
-    cookiesPS = (upgrade3.melhoria*upgrade3.porSegundo)
     cookies +=cookiesPS
     cookieTotal +=cookiesPS
-    if(cookies != 0){
+    // if(cookies != 0){
         document.getElementById('contador').innerHTML = cookies + " Cookies"
         document.getElementById('cookies/s').innerHTML = cookiesPS + " Cookies por segundo"
-    }
+    // }
 } 
 
-
-function compraMelhoria(obj1, qntUpgrade, precoUpgrade){
-    if(cookies >=obj1.preco){
-        obj1.melhoria +=1
-        cookies-= obj1.preco
-        obj1.preco += Math.floor(obj1.preco*obj1.indiceAumento+1)
-        document.getElementById('contador').innerHTML = cookies + " Cookies"
-        document.getElementById(qntUpgrade).innerHTML = obj1.melhoria
-        document.getElementById(precoUpgrade).innerHTML = obj1.preco + " cookies"
-    }
-}
-
+// a cada __ segundos, jogar esas informações no localStorage
 function salvarTemporario(){
     localStorage.setItem("bancoCookie", cookies)
     localStorage.setItem("cookieTotal", cookieTotal)
     localStorage.setItem("cookiePorSegundo", cookiesPS)
-    localStorage.setItem("upgrade1QNTD", upgrade1.melhoria)
-    localStorage.setItem("upgrade2QNTD", upgrade2.melhoria)
-    localStorage.setItem("upgrade3QNTD", upgrade3.melhoria)
+    localStorage.setItem("upgrade1QNTD", upgrade1.quantidade)
+    localStorage.setItem("upgrade2QNTD", upgrade2.quantidade)
+    localStorage.setItem("upgrade3QNTD", upgrade3.quantidade)
 }
 
+// Roda assim que reiniciar a página, pega as informações d localStorage
 function pegarLocalStorage(){
     if(localStorage.getItem("bancoCookie") != null){
         cookies = parseInt(localStorage.getItem("bancoCookie"))
         cookieTotal = parseInt(localStorage.getItem("cookieTotal"))
     }
-    if(localStorage.getItem("upgrade1QNTD") != null){
-        upgrade1.melhoria = parseInt(localStorage.getItem("upgrade1QNTD"))
-        for(var i = 0; i<upgrade1.melhoria; i++){
-            upgrade1.preco += Math.floor((upgrade1.preco*0.08+1))
-            document.getElementById('qntUp1').innerHTML = upgrade1.melhoria
-            document.getElementById('precoUp1').innerHTML = upgrade1.preco + " cookies"
+    // para cada upgrade no arrayUpgrade...
+    for(let i = 1; i<=arrayUpgrades.length;i++){
+
+        // se a quantidade do upgrade (localStorage) não for nula...
+        if(localStorage.getItem(`upgrade${i}QNTD`) != null){
+
+            // pegue a quantidade do localStorage e joque pra upgrade
+            arrayUpgrades[i-1].quantidade = parseInt(localStorage.getItem(`upgrade${i}QNTD`))
+
+            // ajustar o preço do upgrade após reiniciar a página
+            for(let j = 1; j <= arrayUpgrades[i-1].quantidade; j++){
+                arrayUpgrades[i-1].preco = Math.floor(arrayUpgrades[i-1].preco * arrayUpgrades[i-1].taxaPreco)
+            }
+
+            // muda o html para corresponder a quantidade/preco
+            document.getElementById(`qntUp${i}`).innerHTML = arrayUpgrades[i-1].quantidade
+            document.getElementById(`precoUp${i}`).innerHTML = arrayUpgrades[i-1].preco + " cookies"
         }
-
     }
-    if(localStorage.getItem("upgrade2QNTD") != null){
-        upgrade2.melhoria = parseInt(localStorage.getItem("upgrade2QNTD"))
-        for(var i = 0; i<upgrade2.melhoria; i++){
-            upgrade2.preco += Math.floor((upgrade2.preco*0.08+1))
-            document.getElementById('qntUp2').innerHTML = upgrade2.melhoria
-            document.getElementById('precoUp2').innerHTML = upgrade2.preco + " cookies"
-        }
+    // limpar variáveis para uso (funcional, masnão prático)
+    poderClique = 0
+    cookiesPS = 0
 
-    }
-    if(localStorage.getItem("upgrade3QNTD") != null){
-        upgrade3.melhoria = parseInt(localStorage.getItem("upgrade3QNTD"))
-        for(var i = 0; i<upgrade3.melhoria; i++){
-            upgrade3.preco += Math.floor((upgrade3.preco*0.08+1))
-            document.getElementById('qntUp3').innerHTML = upgrade3.melhoria
-            document.getElementById('precoUp3').innerHTML = upgrade3.preco + " cookies"
-        }
-
-    }
-
+    // para cada elemento do arrayUpgrades..
+    arrayUpgrades.forEach(element =>{
+        poderClique += element.cpc*element.quantidade
+        cookiesPS += element.cps*element.quantidade
+    })
 
     cookiesPorSeg()
 }
 
-
 pegarLocalStorage()
 setInterval(salvarTemporario, 2000)
-setInterval(cookiesPorSeg, 1000)
 
+document.addEventListener("keypress", ()=>{
+    clicarNoCookie()
+})
+setInterval(cookiesPorSeg, 1000)
+Upgrades.contarUpgrades(arrayUpgrades)
 

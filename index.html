@@ -12,7 +12,7 @@
 <body>
     <div id="tudoPraEsquerda">
         <div class="divCookieGrande">
-            <a id="teste">
+            <a id="teste" onclick="clicarNoCookie()">
                 <ul id="cookie">
                     <li></li>
                     <li></li>
@@ -25,22 +25,23 @@
             <div>
                 <h1 id="contador">0 Cookies</h1>
                 <h2 id="cookies/s">0 Cookies por segundo</h2>
+                <button onclick="max = !max; alert(`máximo =${max}`)">MAX </button>
             </div>
             <br>
         </div>
         <table class="tabelaDeComprasProdutos">
             <tr>
-                <th class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais1Cookie" onclick="compraMelhoria(upgrade1, 'qntUp1', 'precoUp1')">+ 1 Cookie</button></th>
+                <th class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais1Cookie" onclick="upgrade1.comprarUpgrade('qntUp1', 'precoUp1')">+ 1 Cookie</button></th>
                 <th class="qntUp" id="qntUp1">0</th>
                 <th class="precoCompra"><h2 id="precoUp1">5 cookies</h2></th>
             </tr>
             <tr>
-                <th class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais2Cookie" onclick="compraMelhoria(upgrade2, 'qntUp2','precoUp2')">+ 5 Cookie</button></th>
+                <th class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais2Cookie" onclick="upgrade2.comprarUpgrade('qntUp2', 'precoUp2')">+ 5 Cookie</button></th>
                 <th class="qntUp" id="qntUp2">0</th>
                 <th class="precoCompra"><h2 id="precoUp2">25 cookies</h2></th>
             </tr>
             <tr>
-                <th class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais2Cookie" onclick="compraMelhoria(upgrade3, 'qntUp3','precoUp3')">+5 Cookie/seg</button></th>
+                <th class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais2Cookie" onclick="upgrade3.comprarUpgrade('qntUp3', 'precoUp3')">+5 Cookie/seg</button></th>
                 <th class="qntUp" id="qntUp3">0</th>
                 <th class="precoCompra"><h2 id="precoUp3">240 cookies</h2></th>
             </tr>
@@ -67,16 +68,19 @@
             <button class="botaoFecharDiv" onclick="document.getElementById('divEstatisticas').style.display = 'none'" >Fechar</button>
 
 
-            <br><br><br><br><br><br><br><br><h1>EM PROGRESSO...</h1>
-            <h2>Cookies atuais: <span id="estatisticasCookies">0</span></h2>
-            <h2>Cookies total: <span id="estatisticasCookiesTotal">0</span></h2>
-            <h2>Cookies por clique: <span id="estatisticasCookiesPorClique">1</span></h2>
-            <h2>Cookies por segundo: <select name="selectCookiesPorSegundo" id="">
-                <option value="upgrade3">+5 Cookies/seg</option>
-                <option value="total">Total</option>
-            </select> <span id="estatisticasCookiesPorSegundo">0</span></h2>
-            <h2>Cliques: <span id="estatisticasCliquesTotais">0</span> </h2>
-            <h2>Melhorias compradas: <span id="estatisticasMelhoriasCompradas">0</span></h2>
+            <!-- <br><br><br><br><br><br><br><br><h1>EM PROGRESSO...</h1> -->
+            <div class="estatisticasRun">
+
+                <h2>Cookies atuais: <span id="estatisticasCookies">0</span></h2>
+                <h2>Cookies total: <span id="estatisticasCookiesTotal">0</span></h2>
+                <h2>Cookies por clique: <span id="estatisticasCookiesPorClique">1</span></h2>
+                <h2>Cookies por segundo: <select name="selectCookiesPorSegundo" id="">
+                    <option value="upgrade3">+5 Cookies/seg</option>
+                    <option value="total">Total</option>
+                </select> <span id="estatisticasCookiesPorSegundo">0</span></h2>
+                <h2>Cliques: <span id="estatisticasCliquesTotais">0</span> </h2>
+                <h2>Melhorias compradas: <span id="estatisticasUpgradesComprados">0</span></h2>
+            </div>
         </div>
     </div>
 

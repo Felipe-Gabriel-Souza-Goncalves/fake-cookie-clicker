@@ -20,9 +20,9 @@ function estatisticas(){
     document.getElementById("estatisticasCookies").innerHTML = cookies
     document.getElementById("estatisticasCookiesTotal").innerHTML = cookieTotal
     document.getElementById("estatisticasCookiesPorClique").innerHTML = poderClique
-    document.getElementById("estatisticasCookiesPorSegundo").innerHTML = upgrade3.porSegundo * upgrade3.melhoria
+    document.getElementById("estatisticasCookiesPorSegundo").innerHTML = upgrade3.cps * upgrade3.quantidade
     document.getElementById("estatisticasCliquesTotais").innerHTML = cliques
-    document.getElementById("estatisticasMelhoriasCompradas").innerHTML = parseInt(upgrade1.melhoria + upgrade2.melhoria + upgrade3.melhoria)
+    document.getElementById("estatisticasUpgradesComprados").innerHTML = parseInt(upgrade1.quantidade + upgrade2.quantidade + upgrade3.quantidade)
 }
 
 setInterval(estatisticas, 1500)
