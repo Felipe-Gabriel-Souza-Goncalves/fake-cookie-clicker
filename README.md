@@ -33,3 +33,11 @@ Atualização 01_11_24:
         -localStorage
         -cookiesPS  (cookies por segundo)
         -poderClique (cookies por clique)
+
+Atualização 18_11_24:
+
+    -Opção de escolher quantos upgrades comprar
+    -Mudança da imagem do cookie
+    -Opção de reiniciar progresso + uso de SweetAlert2
+
+    
