@@ -3,7 +3,7 @@ var cookiesPS = 0;
 let cliques = 0;
 let cookieTotal = 0;
 let poderClique = 1;
-let max = false
+let upgradesParaComprar = 1; 
 
 // classe para upgrades
 class Upgrades{
@@ -28,34 +28,36 @@ class Upgrades{
     }
 
     // função para comprar upgrade passando id de 2 elementos HTML referente a quantidade/preco do upgrade
+
     comprarUpgrade(idQntd, idPreco){
-        if(cookies >= this.preco){
-            cookies -= this.preco
-            this.preco = Math.floor(this.preco * this.taxaPreco)
-            this.quantidade++
-
+        for(let i = 0; i< qntdUpgradeComprar; i++){
+            if(cookies >= this.preco){
+                cookies -= this.preco
+                this.preco = Math.floor(this.preco * this.taxaPreco)
+                this.quantidade++    
+    
+                poderClique = 1
+                cookiesPS = 0
+    
+                arrayUpgrades.forEach(element =>{
+                    poderClique += element.cpc*element.quantidade
+                    cookiesPS += element.cps*element.quantidade
+                    // console.log(element.cps)
+                })
+    
+                this.conquistasQntd()
+            
+            } else{
+                break
+            }
+                
             document.getElementById('contador').innerHTML = cookies + " Cookies"
-
+    
             // mudar o html dos elementos passados no parametro
             document.getElementById(idQntd).innerHTML = this.quantidade
             document.getElementById(idPreco).innerHTML = this.preco + " cookies"
+        }
 
-
-            poderClique = 1
-            cookiesPS = 0
-
-            arrayUpgrades.forEach(element =>{
-                poderClique += element.cpc*element.quantidade
-                cookiesPS += element.cps*element.quantidade
-                // console.log(element.cps)
-            })
-
-            this.conquistasQntd()
-
-            if(max == true){
-                this.comprarUpgrade(idQntd, idPreco)
-            }
-        } 
     }
 
     // função para conquistas padrões de cada upgrade
@@ -84,6 +86,7 @@ class Upgrades{
 const upgrade1 = new Upgrades("+1 Cookie", 5, 0, 1.2, 0, 1)
 const upgrade2 = new Upgrades("+5 Cookie", 25, 0, 1.4, 0, 5)
 const upgrade3 = new Upgrades("+5 Cookie/seg", 200, 0, 1.06, 5, 0)
+const upgrade4 = new Upgrades("+5 Cookie/seg", 200, 0, 1.06, 5, 0)
 
 // array com todos os upgrades
 var arrayUpgrades = [upgrade1, upgrade2, upgrade3]
@@ -118,6 +121,29 @@ function salvarTemporario(){
     localStorage.setItem("upgrade1QNTD", upgrade1.quantidade)
     localStorage.setItem("upgrade2QNTD", upgrade2.quantidade)
     localStorage.setItem("upgrade3QNTD", upgrade3.quantidade)
+}
+function apagarProgresso(){
+    Swal.fire({
+        title: "Você tem certeza de que quer apagar o progresso?",
+        showDenyButton: true,
+        confirmButtonText: "Apagar",
+        denyButtonText: `Cancelar`
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            localStorage.setItem("bancoCookie", 0)
+            localStorage.setItem("cookieTotal", 0)
+            localStorage.setItem("cookiePorSegundo", 0)
+            localStorage.setItem("upgrade1QNTD", 0)
+            localStorage.setItem("upgrade2QNTD", 0)
+            localStorage.setItem("upgrade3QNTD", 0)
+            window.location.href = "index.html"
+        } else if (result.isDenied) {
+            return
+        }
+      });
+
+
 }
 
 // Roda assim que reiniciar a página, pega as informações d localStorage
@@ -154,7 +180,6 @@ function pegarLocalStorage(){
         poderClique += element.cpc*element.quantidade
         cookiesPS += element.cps*element.quantidade
     })
-
     cookiesPorSeg()
 }
 

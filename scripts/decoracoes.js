@@ -25,4 +25,29 @@ function estatisticas(){
     document.getElementById("estatisticasUpgradesComprados").innerHTML = parseInt(upgrade1.quantidade + upgrade2.quantidade + upgrade3.quantidade)
 }
 
+var qntdUpgradeComprar = 1
+
+function mudarNumUpgrades(id){
+    switch(id){
+        case 0:
+            qntdUpgradeComprar = 1
+            break
+        case 1: 
+            qntdUpgradeComprar = 10
+            break
+        case 2:
+            qntdUpgradeComprar = 100 
+            break
+    }
+
+    for(let i = 0; i< document.getElementsByClassName("botaoMudarNumUpgrade").length; i++){
+        document.getElementsByClassName("botaoMudarNumUpgrade")[i].classList.remove("botaoAtivo")
+
+        if(i == id){
+            document.getElementsByClassName("botaoMudarNumUpgrade")[i].classList.add("botaoAtivo")
+        }
+    }
+}
+
+
 setInterval(estatisticas, 1500)

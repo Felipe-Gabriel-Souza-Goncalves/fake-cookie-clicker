@@ -23,6 +23,13 @@ body{
         align-items: center;
         text-align: center;
     }
+        #imagemCookie{
+            clip-path: circle();
+            transition: 0.4s;
+        }
+        #imagemCookie:hover{
+            scale: 1.1;
+        }
         #cookie{
             background-color: orange;
             width: 100px;
@@ -69,25 +76,28 @@ body{
             top: -10px;
         }
 
-
         table{
             font-size: 12px;
             border: 2px solid black;
             border-collapse: collapse;
         }
-                .nomeUpgrade{
-                    width: 200px;
-                }
-                .qntUp{
-                    width: 60px;
-                }
-                .precoCompra{
-                    width: 200px;
-                }
-        th,tr{
+            .nomeUpgrade{
+                width: 200px;
+            }
+            .qntUp{
+                width: 60px;
+            }
+            .precoCompra{
+                width: 200px;
+            }
+
+/* teste */
+
+
+        th,tr, td{
             height: 50px;
             border: 1px solid black;
-
+            text-align: center;
         }
         .botaoCompraUpgrade{
             height: 100%;
@@ -102,6 +112,14 @@ body{
             }
             .botaoCompraUpgrade:active{
                 animation: clickCompraUpgrade 200ms ease-in-out;
+            }
+            .botaoMudarNumUpgrade{
+                filter: brightness(0.7);
+            }
+            .botaoAtivo{
+                filter: brightness(1.1);
+                background-color: darkgrey;
+                color: aliceblue;
             }
 
         #precoUp1,

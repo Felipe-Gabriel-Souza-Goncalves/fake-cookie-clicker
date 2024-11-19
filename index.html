@@ -8,42 +8,51 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/powerUps.css">
     <link rel="stylesheet" href="css/animacoes.css">
+    <link rel="stylesheet" href="css/extras.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div id="tudoPraEsquerda">
         <div class="divCookieGrande">
             <a id="teste" onclick="clicarNoCookie()">
-                <ul id="cookie">
+                <!-- <ul id="cookie">
                     <li></li>
                     <li></li>
                     <li></li>
                     <li></li>
                     <li></li>
-                </ul>
+                </ul> -->
+                <img id="imagemCookie" src="imagens/teste-cookie.png" width="150" alt="">
             </a>
             <br><br>
             <div>
                 <h1 id="contador">0 Cookies</h1>
                 <h2 id="cookies/s">0 Cookies por segundo</h2>
-                <button onclick="max = !max; alert(`máximo =${max}`)">MAX </button>
+                <!-- <button onclick="max = !max; alert(`máximo =${max}`)">MAX </button> -->
             </div>
             <br>
         </div>
         <table class="tabelaDeComprasProdutos">
             <tr>
-                <th class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais1Cookie" onclick="upgrade1.comprarUpgrade('qntUp1', 'precoUp1')">+ 1 Cookie</button></th>
-                <th class="qntUp" id="qntUp1">0</th>
-                <th class="precoCompra"><h2 id="precoUp1">5 cookies</h2></th>
+                <th><button class="botaoCompraUpgrade botaoMudarNumUpgrade botaoAtivo"  onclick="mudarNumUpgrades(0)">x1</button></th>
+                <th><button class="botaoCompraUpgrade botaoMudarNumUpgrade"  onclick="mudarNumUpgrades(1)">x10</button></th>
+                <th><button class="botaoCompraUpgrade botaoMudarNumUpgrade"  onclick="mudarNumUpgrades(2)">100x</button></th>
             </tr>
             <tr>
-                <th class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais2Cookie" onclick="upgrade2.comprarUpgrade('qntUp2', 'precoUp2')">+ 5 Cookie</button></th>
-                <th class="qntUp" id="qntUp2">0</th>
-                <th class="precoCompra"><h2 id="precoUp2">25 cookies</h2></th>
+                <td class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais1Cookie" onclick="upgrade1.comprarUpgrade('qntUp1', 'precoUp1')">+ 1 Cookie</button></td>
+                <td class="qntUp" id="qntUp1">0</td>
+                <td class="precoCompra"><h2 id="precoUp1">5 cookies</h2></td>
             </tr>
             <tr>
-                <th class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais2Cookie" onclick="upgrade3.comprarUpgrade('qntUp3', 'precoUp3')">+5 Cookie/seg</button></th>
-                <th class="qntUp" id="qntUp3">0</th>
-                <th class="precoCompra"><h2 id="precoUp3">240 cookies</h2></th>
+                <td class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais2Cookie" onclick="upgrade2.comprarUpgrade('qntUp2', 'precoUp2')">+ 5 Cookie</button></td>
+                <td class="qntUp" id="qntUp2">0</td>
+                <td class="precoCompra"><h2 id="precoUp2">25 cookies</h2></td>
+            </tr>
+            <tr>
+                <td class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais2Cookie" onclick="upgrade3.comprarUpgrade('qntUp3', 'precoUp3')">+5 Cookie/seg</button></td>
+                <td class="qntUp" id="qntUp3">0</td>
+                <td class="precoCompra"><h2 id="precoUp3">240 cookies</h2></td>
             </tr>
         </table>
         <br><br><br>
@@ -61,7 +70,7 @@
             <button class="botaoFecharDiv" onclick="document.getElementById('divConfiguracoes').style.display = 'none'">Fechar</button>
 
             <br><br><br><br><br><br><br><br><h1>EM PROGRESSO...</h1>
-            <button>REINICIAR PROGRESSO</button>
+            <button onclick="apagarProgresso()">REINICIAR PROGRESSO</button>
         </div>
         <!-- div para estatísticas -->
         <div id="divEstatisticas">
