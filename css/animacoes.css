@@ -11,3 +11,16 @@
         }
 
 }
+
+@keyframes fundoCookie{
+    0%{
+        rotate: 0deg;
+    }
+    50%{
+        rotate: 360deg;
+    }
+    99%{
+        rotate: 0deg;
+    }
+}
+

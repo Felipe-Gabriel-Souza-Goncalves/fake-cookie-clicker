@@ -1,7 +1,7 @@
 
 function decoracao(obj, idPreco){
     // console.log("upgrade" + "1" + ".melhoria")
-    document.getElementById(idPreco).title = "??? "+ obj.preco+ ` necessários para comprar`
+    document.getElementById(idPreco).title = obj.preco+ ` cookies necessários para comprar`
     if(obj.preco > cookies){
         document.getElementById(idPreco).style.backgroundColor = 'gray'
         document.getElementById(idPreco).style.color = 'lightgray'

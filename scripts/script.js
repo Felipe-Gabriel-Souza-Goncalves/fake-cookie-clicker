@@ -1,10 +1,10 @@
 var cookies = 0;
 var cookiesPS = 0;
+var cookieTotal = 0;
 let cliques = 0;
-let cookieTotal = 0;
 let poderClique = 1;
 let upgradesParaComprar = 1; 
-
+let SFXligado = true;
 // classe para upgrades
 class Upgrades{
 
@@ -86,17 +86,27 @@ class Upgrades{
 const upgrade1 = new Upgrades("+1 Cookie", 5, 0, 1.2, 0, 1)
 const upgrade2 = new Upgrades("+5 Cookie", 25, 0, 1.4, 0, 5)
 const upgrade3 = new Upgrades("+5 Cookie/seg", 200, 0, 1.06, 5, 0)
-const upgrade4 = new Upgrades("+5 Cookie/seg", 200, 0, 1.06, 5, 0)
+const upgrade4 = new Upgrades("+25 Cookie/seg", 1200, 0, 1.06, 25, 0)
 
 // array com todos os upgrades
 var arrayUpgrades = [upgrade1, upgrade2, upgrade3]
 
-// testes ↓
+function audioCookie(){
+    if(SFXligado == true){
+        document.getElementById("toggleSFX").innerHTML = "Desligar efeitos sonoros"
+        let sonsCookie = ["sfx/pop-1.mp3","sfx/pop-2.mp3","sfx/pop-3.mp3"]
+        let index = Math.floor(Math.random()*3)
+        var audio = new Audio(sonsCookie[index])
+        audio.volume = document.getElementById("volumeSFX").value
+        audio.play()
+    } else{
+        document.getElementById("toggleSFX").innerHTML = "Ligar efeitos sonoros"
+    }
+}
 
-
-// testes ↑
 
 function clicarNoCookie(){
+    audioCookie()
     cookies +=poderClique + 1
     document.getElementById('contador').innerHTML = cookies + " Cookies"
     cliques += 1
@@ -113,7 +123,7 @@ function cookiesPorSeg(){
     // }
 } 
 
-// a cada __ segundos, jogar esas informações no localStorage
+// a cada 30 segundos, jogar esas informações no localStorage
 function salvarTemporario(){
     localStorage.setItem("bancoCookie", cookies)
     localStorage.setItem("cookieTotal", cookieTotal)
@@ -129,7 +139,7 @@ function apagarProgresso(){
         confirmButtonText: "Apagar",
         denyButtonText: `Cancelar`
       }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
+
         if (result.isConfirmed) {
             localStorage.setItem("bancoCookie", 0)
             localStorage.setItem("cookieTotal", 0)
@@ -183,12 +193,22 @@ function pegarLocalStorage(){
     cookiesPorSeg()
 }
 
+
+// function mudarIdioma(){
+//     document.documentElement.setAttribute('lang', document.getElementById("selectIdioma").value)
+// }
+
+
 pegarLocalStorage()
-setInterval(salvarTemporario, 2000)
+setInterval(salvarTemporario, 30000)
+// mudarIdioma()
 
 document.addEventListener("keypress", ()=>{
     clicarNoCookie()
 })
+// document.getElementById("selectIdioma").addEventListener("change", mudarIdioma)
+
 setInterval(cookiesPorSeg, 1000)
 Upgrades.contarUpgrades(arrayUpgrades)
+
 

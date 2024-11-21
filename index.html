@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cookie clicker</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/powerUps.css">
     <link rel="stylesheet" href="css/animacoes.css">
@@ -16,28 +21,31 @@
     <div id="tudoPraEsquerda">
         <div class="divCookieGrande">
             <a id="teste" onclick="clicarNoCookie()">
-                <!-- <ul id="cookie">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul> -->
                 <img id="imagemCookie" src="imagens/teste-cookie.png" width="150" alt="">
             </a>
             <br><br>
             <div>
                 <h1 id="contador">0 Cookies</h1>
                 <h2 id="cookies/s">0 Cookies por segundo</h2>
-                <!-- <button onclick="max = !max; alert(`máximo =${max}`)">MAX </button> -->
             </div>
             <br>
         </div>
         <table class="tabelaDeComprasProdutos">
             <tr>
-                <th><button class="botaoCompraUpgrade botaoMudarNumUpgrade botaoAtivo"  onclick="mudarNumUpgrades(0)">x1</button></th>
-                <th><button class="botaoCompraUpgrade botaoMudarNumUpgrade"  onclick="mudarNumUpgrades(1)">x10</button></th>
-                <th><button class="botaoCompraUpgrade botaoMudarNumUpgrade"  onclick="mudarNumUpgrades(2)">100x</button></th>
+                <th>
+                    <h1>Nome</h1>
+                </th>
+                <th>
+                    <h1>Quantidade</h1>
+                </th>
+                <th>
+                    <h1>Preço</h1>
+                </th>
+            </tr>
+            <tr>
+                <td><button class="botaoCompraUpgrade botaoMudarNumUpgrade botaoAtivo"  onclick="mudarNumUpgrades(0)">x1</button></td>
+                <td><button class="botaoCompraUpgrade botaoMudarNumUpgrade"  onclick="mudarNumUpgrades(1)">x10</button></td>
+                <td><button class="botaoCompraUpgrade botaoMudarNumUpgrade"  onclick="mudarNumUpgrades(2)">100x</button></td>
             </tr>
             <tr>
                 <td class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais1Cookie" onclick="upgrade1.comprarUpgrade('qntUp1', 'precoUp1')">+ 1 Cookie</button></td>
@@ -69,17 +77,26 @@
         <div id="divConfiguracoes">
             <button class="botaoFecharDiv" onclick="document.getElementById('divConfiguracoes').style.display = 'none'">Fechar</button>
 
-            <br><br><br><br><br><br><br><br><h1>EM PROGRESSO...</h1>
-            <button onclick="apagarProgresso()">REINICIAR PROGRESSO</button>
+            <div class="opcoesConfiguracao">
+                <button onclick="apagarProgresso()" id="botaoReiniciarProgresso">REINICIAR PROGRESSO</button>
+                <br><br>
+                <label for="volumeSFX">Volume SFX</label>
+                <input type="range" name="" oninput="audioCookie()" id="volumeSFX" min="0" max="1" step="0.1">
+                <br>
+                <button id="toggleSFX" onclick="SFXligado = !SFXligado; audioCookie()">Desligar efeitos sonoros</button>
+                <!-- <select name="idioma" id="selectIdioma">
+                    <option value="pt-br">pt-br</option>
+                    <option value="en">en</option>
+                    <option value="es">es</option>
+                </select> -->
+            </div>
         </div>
+
+
         <!-- div para estatísticas -->
         <div id="divEstatisticas">
             <button class="botaoFecharDiv" onclick="document.getElementById('divEstatisticas').style.display = 'none'" >Fechar</button>
-
-
-            <!-- <br><br><br><br><br><br><br><br><h1>EM PROGRESSO...</h1> -->
             <div class="estatisticasRun">
-
                 <h2>Cookies atuais: <span id="estatisticasCookies">0</span></h2>
                 <h2>Cookies total: <span id="estatisticasCookiesTotal">0</span></h2>
                 <h2>Cookies por clique: <span id="estatisticasCookiesPorClique">1</span></h2>
