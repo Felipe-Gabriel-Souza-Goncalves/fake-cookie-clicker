@@ -40,4 +40,8 @@ Atualização 18_11_24:
     -Mudança da imagem do cookie
     -Opção de reiniciar progresso + uso de SweetAlert2
 
-    
+Atualização 20/11/2024:
+
+    -Novos áudios para clicar no cookie
+    -Novo leiaute para a tabela de compras
+    -Opções de volume nas configurações
