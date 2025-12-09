@@ -7,6 +7,9 @@
 body{
     display: flex;
 }
+button{
+    cursor: pointer;
+}
 
 #tudoPraEsquerda{
     display: flex;
@@ -26,22 +29,12 @@ body{
         #imagemCookie{
             clip-path: circle();
             transition: 0.4s;
+            cursor: pointer;
         }
         #imagemCookie:hover{
             scale: 1.1;
         }
-        #cookie{
-            background-color: orange;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            position: relative;
-            transition: 0.2s;
-        }
-            #cookie:hover{
-                scale: 1.2;
-                filter: drop-shadow(0px 3px 6px rgba(80, 32, 17, 0.699));
-            }
+
             #teste:focus, #teste:active{
                 animation: clickCookie 0.3s ease-in-out;
             }
@@ -164,6 +157,20 @@ body{
         font-size: 2rem;
         float: right;
     }
+
+#popUpSalvar{display: none; user-select: none;}
+#popUpSalvar img{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 75px;
+    animation: salvarIcone 1s infinite ease-in-out;
+    user-select: none;
+    z-index: 10;
+}
+
+
+
 
 @media (width < 900px) {
     body{

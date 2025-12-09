@@ -12,9 +12,10 @@ function decoracao(obj, idPreco){
         document.getElementById(idPreco).style.opacity = '1'
     }
 }
-setInterval(() => decoracao(upgrade1, 'precoUp1'), 200)
-setInterval(() => decoracao(upgrade2, 'precoUp2'), 200)
-setInterval(() => decoracao(upgrade3, 'precoUp3'), 200)
+
+// setInterval(() => decoracao(upgrade1, 'precoUp1'), 200)
+// setInterval(() => decoracao(upgrade2, 'precoUp2'), 200)
+// setInterval(() => decoracao(upgrade3, 'precoUp3'), 200)
 
 function estatisticas(){
     document.getElementById("estatisticasCookies").innerHTML = cookies
