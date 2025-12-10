@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/powerUps.css">
     <link rel="stylesheet" href="css/animacoes.css">
     <link rel="stylesheet" href="css/extras.css">
+    <link rel="stylesheet" href="css/conquistas.css">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -33,49 +34,26 @@
         <table id="tabelaDeComprasProdutos">
             <thead>
                 <tr>
-                    <th>
-                        <h1>Nome</h1>
-                    </th>
-                    <th>
-                        <h1>Quantidade</h1>
-                    </th>
-                    <th>
-                        <h1>Preço</h1>
-                    </th>
+                    <th><h1>Nome</h1></th>
+                    <th><h1>Quantidade</h1></th>
+                    <th><h1>Preço</h1></th>
                 </tr>
             </thead>
-            <tbody id="listaProdutos">
-
-                <tr>
-                    <td><button class="botaoCompraUpgrade botaoMudarNumUpgrade botaoAtivo"  onclick="mudarNumUpgrades(0)">x1</button></td>
-                    <td><button class="botaoCompraUpgrade botaoMudarNumUpgrade"  onclick="mudarNumUpgrades(1)">x10</button></td>
-                    <td><button class="botaoCompraUpgrade botaoMudarNumUpgrade"  onclick="mudarNumUpgrades(2)">100x</button></td>
-                </tr>
-                <tr>
-                    <td class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais1Cookie" onclick="upgrade1.comprarUpgrade('qntUp1', 'precoUp1')">+ 1 Cookie</button></td>
-                    <td class="qntUp" id="qntUp1">0</td>
-                    <td class="precoCompra"><h2 id="precoUp1">5 cookies</h2></td>
-                </tr>
-                <tr>
-                    <td class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais2Cookie" onclick="upgrade2.comprarUpgrade('qntUp2', 'precoUp2')">+ 5 Cookie</button></td>
-                    <td class="qntUp" id="qntUp2">0</td>
-                    <td class="precoCompra"><h2 id="precoUp2">25 cookies</h2></td>
-                </tr>
-                <tr>
-                    <td class="nomeUpgrade"><button class="botaoCompraUpgrade" id="mais2Cookie" onclick="upgrade3.comprarUpgrade('qntUp3', 'precoUp3')">+5 Cookie/seg</button></td>
-                    <td class="qntUp" id="qntUp3">0</td>
-                    <td class="precoCompra"><h2 id="precoUp3">240 cookies</h2></td>
-                </tr>
-            </tbody>
+            <tr>
+                <td><button class="botaoCompraUpgrade botaoMudarNumUpgrade botaoAtivo"  onclick="mudarNumUpgrades(0)">x1</button></td>
+                <td><button class="botaoCompraUpgrade botaoMudarNumUpgrade"  onclick="mudarNumUpgrades(1)">x10</button></td>
+                <td><button class="botaoCompraUpgrade botaoMudarNumUpgrade"  onclick="mudarNumUpgrades(2)">100x</button></td>
+            </tr>
+            <tbody id="listaProdutos"></tbody>
         </table>
         <br><br><br>
 
     </div>
     <div id="tudoPraDireita">
         <br>
-        <button class="botaoInformacao" onclick="document.getElementById('divConfiguracoes').style.display = 'block'">Configurações</button>
-        <br>
-        <button class="botaoInformacao" onclick="document.getElementById('divEstatisticas').style.display = 'block'">Estatísticas</button>
+        <button class="botaoInformacao" onclick="abrirSecao('divConfiguracoes')">Configurações</button>
+        <button class="botaoInformacao" onclick="abrirSecao('divEstatisticas')">Estatísticas</button>
+        <button class="botaoInformacao" onclick="abrirSecao('divConquistas')">Conquistas</button>
 
 
         <!-- div para configurações -->
@@ -86,7 +64,7 @@
                 <button onclick="apagarProgresso()" id="botaoReiniciarProgresso">REINICIAR PROGRESSO</button>
                 <br><br>
                 <label for="volumeSFX">Volume SFX</label>
-                <input type="range" name="" oninput="audioCookie()" id="volumeSFX" min="0" max="1" step="0.1">
+                <input type="range" nameoninput="audioCookie()" id="volumeSFX" min="0" max="1" step="0.01">
                 <br>
                 <button id="toggleSFX" onclick="SFXligado = !SFXligado; audioCookie()">Desligar efeitos sonoros</button>
 
@@ -113,7 +91,11 @@
                 <h2>Cliques: <span id="estatisticasCliquesTotais">0</span> </h2>
                 <h2>Melhorias compradas: <span id="estatisticasUpgradesComprados">0</span></h2>
             </div>
+        </div>
 
+        <div id="divConquistas">
+           <p>Conquistas liberadas: <span id="numeroConquistas">0/0</span></p> 
+           <div id="campoConquistas"></div>
         </div>
     </div>
 
@@ -121,6 +103,7 @@
         <img draggable="false" src="imagens/save icon.png" alt="salvar">
     </div>
 
+    <script src="scripts/geral.js"></script>
     <script src="scripts/script.js"></script>
     <script src="scripts/conquistas.js"></script>
     <script src="scripts/decoracoes.js"></script>

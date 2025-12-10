@@ -6,6 +6,7 @@
 
 body{
     display: flex;
+    overflow-x: hidden;
 }
 button{
     cursor: pointer;
