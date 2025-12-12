@@ -38,12 +38,12 @@
                     <th><h1>Quantidade</h1></th>
                     <th><h1>Preço</h1></th>
                 </tr>
+                <tr>
+                    <td><button class="botaoCompraUpgrade botaoMudarNumUpgrade botaoAtivo"  onclick="mudarNumUpgrades(0)">x1</button></td>
+                    <td><button class="botaoCompraUpgrade botaoMudarNumUpgrade"  onclick="mudarNumUpgrades(1)">x10</button></td>
+                    <td><button class="botaoCompraUpgrade botaoMudarNumUpgrade"  onclick="mudarNumUpgrades(2)">100x</button></td>
+                </tr>
             </thead>
-            <tr>
-                <td><button class="botaoCompraUpgrade botaoMudarNumUpgrade botaoAtivo"  onclick="mudarNumUpgrades(0)">x1</button></td>
-                <td><button class="botaoCompraUpgrade botaoMudarNumUpgrade"  onclick="mudarNumUpgrades(1)">x10</button></td>
-                <td><button class="botaoCompraUpgrade botaoMudarNumUpgrade"  onclick="mudarNumUpgrades(2)">100x</button></td>
-            </tr>
             <tbody id="listaProdutos"></tbody>
         </table>
         <br><br><br>
@@ -58,14 +58,17 @@
 
         <!-- div para configurações -->
         <div id="divConfiguracoes">
-            <button class="botaoFecharDiv" onclick="document.getElementById('divConfiguracoes').style.display = 'none'">Fechar</button>
+            <button class="botaoFecharDiv" onclick="abrirSecao()">Fechar</button>
 
             <div class="opcoesConfiguracao">
                 <button onclick="apagarProgresso()" id="botaoReiniciarProgresso">REINICIAR PROGRESSO</button>
                 <br><br>
+
                 <label for="volumeSFX">Volume SFX</label>
-                <input type="range" nameoninput="audioCookie()" id="volumeSFX" min="0" max="1" step="0.01">
+                <input type="range" oninput="audioCookie()" id="volumeSFX" value="0.5" min="0" max="1" step="0.01">
+                <span id="configVolume">50%</span>
                 <br>
+                
                 <button id="toggleSFX" onclick="SFXligado = !SFXligado; audioCookie()">Desligar efeitos sonoros</button>
 
                 <h2 id="textoSalvarManualmente">Salvar manualmente: 
@@ -78,23 +81,27 @@
 
         <!-- div para estatísticas -->
         <div id="divEstatisticas">
-            <button class="botaoFecharDiv" onclick="document.getElementById('divEstatisticas').style.display = 'none'" >Fechar</button>
+            <button class="botaoFecharDiv" onclick="abrirSecao()" >Fechar</button>
             
-            <div class="estatisticasRun">
-                <h2>Cookies atuais: <span id="estatisticasCookies">0</span></h2>
-                <h2>Cookies total: <span id="estatisticasCookiesTotal">0</span></h2>
-                <h2>Cookies por clique: <span id="estatisticasCookiesPorClique">1</span></h2>
-                <h2>Cookies por segundo: <select name="selectCookiesPorSegundo" id="">
-                    <option value="upgrade3">+5 Cookies/seg</option>
+            <div class="estatRun">
+                <h2>Cookies atuais: <span id="estatCookies">0</span></h2>
+                <h2>Cookies total: <span id="estatCookiesTotal">0</span></h2>
+                <h2>Cookies por clique: <span id="estatCookiesPorClique">1</span></h2>
+
+                <h2>Cookies por segundo:     
+                <select name="selectCookiesPorSegundo" id="selectCookiesPorSegundo">    
                     <option value="total">Total</option>
-                </select> <span id="estatisticasCookiesPorSegundo">0</span></h2>
-                <h2>Cliques: <span id="estatisticasCliquesTotais">0</span> </h2>
-                <h2>Melhorias compradas: <span id="estatisticasUpgradesComprados">0</span></h2>
+                </select> 
+                <span id="estatCookiesPorSegundo">0</span></h2>
+
+                <h2>Cliques: <span id="estatCliquesTotais">0</span> </h2>
+                <h2>Upgrades comprados: <span id="estatUpgradesComprados">0</span></h2>
             </div>
         </div>
 
         <div id="divConquistas">
-           <p>Conquistas liberadas: <span id="numeroConquistas">0/0</span></p> 
+            <button class="botaoFecharDiv" onclick="abrirSecao()" >Fechar</button>
+           <p>Conquistas liberadas: <span id="numeroConquistas">0/0 (0%)</span></p> 
            <div id="campoConquistas"></div>
         </div>
     </div>
@@ -107,6 +114,7 @@
     <script src="scripts/script.js"></script>
     <script src="scripts/conquistas.js"></script>
     <script src="scripts/decoracoes.js"></script>
-    <script src="scripts/upgrades.js"></script>
+    <script src="scripts/salvar.js"></script>
+    <script src="scripts/events.js"></script>
 </body>
 </html>

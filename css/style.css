@@ -19,6 +19,7 @@ button{
     background-color: antiquewhite;
     min-width: 50vw;
     height: 100vh;
+    padding-bottom: 36px;
 }
     .divCookieGrande{
         display: flex;
@@ -98,6 +99,10 @@ button{
             background-color:rgb(68, 42, 8);
             color: aliceblue;
         }
+        thead tr:last-of-type{
+            background-color: rgb(68, 68, 68);
+        }
+
         .botaoCompraUpgrade{
             height: 100%;
             width: 100%;
@@ -131,6 +136,12 @@ button{
             align-items: center;
         }
 
+    select{
+        border: 6px ridge #180f03;
+    color: white;
+    background-color: #47320f;
+    }
+
 #tudoPraDireita{
     display: flex;
     flex-direction: column;
@@ -145,18 +156,32 @@ button{
     }
 
 #divConfiguracoes,
-#divEstatisticas{
+#divEstatisticas,
+#divConquistas{
     display: none;
-    background-color: rgba(0, 0, 0, 0.397);
-    position: absolute;
+    backdrop-filter: blur(5px) brightness(0.7);
+    position: fixed;
+    top: 0;
+    right: 0;
     z-index: 2;
-    min-width: 50vw;
-    min-height: 100vh;
-    
+    width: 45vw;
+    box-sizing: border-box;
+    padding: 16px;
+    padding-bottom: 36px;
+    height: 100vh;
+    overflow: auto;
+}
+#divConfiguracoes::-webkit-scrollbar,
+#divEstatisticas::-webkit-scrollbar,
+#divConquistas::-webkit-scrollbar{
+    display: none;
 }
     .botaoFecharDiv{
         font-size: 2rem;
-        float: right;
+        position: absolute;
+        z-index: 9;
+        top: 0;
+        right: 0;
     }
 
 #popUpSalvar{display: none; user-select: none;}

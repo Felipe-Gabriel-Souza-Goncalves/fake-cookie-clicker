@@ -3,7 +3,7 @@ function abrirSecao(idSecao, idsSecoesAuxiliares = null, callback = null){
   document.getElementById("divEstatisticas").style.display = "none"
   document.getElementById("divConquistas").style.display = "none"
 
-  document.getElementById(idSecao).style.display = "unset"
+  idSecao != null ? document.getElementById(idSecao).style.display = "unset" : ""
   
   if(idsSecoesAuxiliares){
     Array.from(idsSecoesAuxiliares).forEach(id =>{
