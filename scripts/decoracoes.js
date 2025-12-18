@@ -67,7 +67,7 @@ function mudarNumUpgrades(id) {
 function alterarTextosPrecos() {
   Upgrades.upgradesExistentes.forEach((upgd, i) => {
     let tempPreco = structuredClone(upgd.preco)
-    console.log("preco temporario", tempPreco)
+    // console.log("preco temporario", tempPreco)
     for (let j = 0; j < qntdUpgradeComprar; j++) {
         tempPreco = Math.floor(tempPreco * upgd.taxaPreco);
     }

@@ -10,4 +10,12 @@ function abrirSecao(idSecao, idsSecoesAuxiliares = null, callback = null){
       document.getElementById(id).style.display = "inherit"
     })
   }
+
+  if(callback){
+    callback()
+  }
 }
+
+function configAberta(){randomStats.elementOpened = "config"}
+function estatisticaAberta(){randomStats.elementOpened = "estatistica"}
+function abriuConquista(){randomStats.conquistasAbertas++}

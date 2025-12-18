@@ -51,9 +51,9 @@
     </div>
     <div id="tudoPraDireita">
         <br>
-        <button class="botaoInformacao" onclick="abrirSecao('divConfiguracoes')">Configurações</button>
-        <button class="botaoInformacao" onclick="abrirSecao('divEstatisticas')">Estatísticas</button>
-        <button class="botaoInformacao" onclick="abrirSecao('divConquistas')">Conquistas</button>
+        <button class="botaoInformacao" onclick="abrirSecao('divConfiguracoes', '', configAberta)">Configurações</button>
+        <button class="botaoInformacao" onclick="abrirSecao('divEstatisticas', '', estatisticaAberta)">Estatísticas</button>
+        <button class="botaoInformacao" onclick="abrirSecao('divConquistas', '', abriuConquista)">Conquistas</button>
 
 
         <!-- div para configurações -->
@@ -72,7 +72,7 @@
                 <button id="toggleSFX" onclick="SFXligado = !SFXligado; audioCookie()">Desligar efeitos sonoros</button>
 
                 <h2 id="textoSalvarManualmente">Salvar manualmente: 
-                    <img width="40px" src="imagens/save icon.png" alt="Salvar" onclick="salvarTemporario()">
+                    <img width="40px" src="imagens/save icon.png" alt="Salvar" onclick="salvarTemporario(); randomStats.saveManual++">
                 </h2>
 
             </div>
@@ -100,13 +100,33 @@
         </div>
 
         <div id="divConquistas">
+            <div id="descricaoConquista">
+                <img id="trofeuConquistaInfo" src="" alt="troféu">
+                <div>
+                    <h2 id="nomeConquistaInfo">Titulo</h2>
+                    <p id="descricaoConquistaInfo">Descrição</p>
+                </div>
+            </div>
             <button class="botaoFecharDiv" onclick="abrirSecao()" >Fechar</button>
            <p>Conquistas liberadas: <span id="numeroConquistas">0/0 (0%)</span></p> 
            <div id="campoConquistas"></div>
         </div>
     </div>
 
-    <div id="popUpSalvar">
+    <div id="campoPopupsConquistas"></div>
+
+    <!-- <div id="popupConquista">
+        <p>Conquista desbloqueada!</p>
+        <div>
+            <img id="trofeuConquistaDesbloqueada" src="" alt="troféu">
+            <div>
+                <h2 id="nomeConquistaDesbloqueada">Titulo</h2>
+                <p id="descricaoConquistaDesbloqueada">Descrição</p>
+            </div>
+        </div>
+    </div> -->
+
+    <div id="popupSalvar">
         <img draggable="false" src="imagens/save icon.png" alt="salvar">
     </div>
 

@@ -1,14 +1,20 @@
-#divConquistas{
+#divConquistas {
   display: none;
+  padding: 0;
 }
-#campoConquistas{
+#divConquistas p,
+#divConquistas #campoConquistas{
+  padding: 16px;
+}
+
+#campoConquistas {
   margin: 24px 0;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   padding: 8px;
 }
-.containerConquistas{
+.containerConquistas {
   display: flex;
   box-sizing: border-box;
   align-items: center;
@@ -19,11 +25,55 @@
   width: 30%;
 }
 
-.containerConquistas h3{
+.containerConquistas h3 {
   text-wrap: wrap;
 }
 
-.conquistaBloqueada{
+.conquistaBloqueada {
   filter: brightness(0.7) grayscale(0.2);
   background-color: #dedede;
 }
+
+#descricaoConquista {
+  display: none;
+  position: sticky;
+  width: 100%;
+  color: white;
+  z-index: 10;
+  background: rgb(39, 38, 54);
+  top: 0;
+  left: 0;
+  padding: 8px;
+  gap: 12px;
+}
+#trofeuConquistaInfo{height:70px}
+
+#campoPopupsConquistas{
+  position: fixed;
+  z-index: 8;
+  bottom: 0;
+  left: 37.5%;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.popupConquista {
+  background: rgba(49, 46, 62, 0.767);
+  backdrop-filter: blur(4px);
+  color: white;
+  border: 4px ridge rgb(70, 44, 8);
+  border-bottom: 0;
+  height: 80px;
+  width: 320px;
+  padding: 8px;
+}
+
+.popupConquista div:has(div){display: flex; justify-content: left; gap: 24px;}
+.popupConquista div:not(:has(div)){display: flex; flex-direction: column; text-align: left;}
+.popupConquista img{height: 60px; aspect-ratio:1/1;}
+.popupConquista h2{font-size: 0.9em;}
+.popupConquista p{font-size: 0.7em;}

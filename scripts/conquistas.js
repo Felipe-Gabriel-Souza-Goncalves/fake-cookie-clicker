@@ -6,17 +6,29 @@ class Conquistas{
     static conquistasLiberadas = []
 
     constructor(nome, descricao, variavel, criterio, categoria){
+
         this.nome = nome,
         this.descricao = descricao
         this.variavel = variavel, 
         this.criterio = criterio,
         this.categoria = categoria
         this.completa = false
+        this.index = Conquistas.numeroConquistasTotais
 
         Conquistas.numeroConquistasTotais++   
         Conquistas.conquistasTotais.push(this)
     }
 }
+
+const randomStats = { // Estatísticas inúteis para fazer conquistas
+  elementOpened: null,
+  timeStatistic: 0,
+  timeConfig: 0,
+  conquistasAbertas: 0,
+  saveManual: 0, // Pega a referencia ;)
+  tentativasComprar: 0,
+}
+
 
 const infoConquistas = {
     c1: new Conquistas("Começando!", "Fez ao menos 100 cookies no total", cookies, "cookieTotal >= 100", "bronze"),
@@ -47,29 +59,42 @@ const infoConquistas = {
     c21: new Conquistas("Espírito de clicker", `Clicou 10.000 vezes`, cliques, "cliques >= 10000", "ouro"),
     c22: new Conquistas("Por que???", `Clicou 100.000 vezes`, cliques, "cliques >= 100000", "ouro"),
 
-    c23: new Conquistas("pequenos upgrades", `Comprou 1 upgrade`, Upgrades.numeroDeUpgrades, "Upgrades.numeroDeUpgrades >= 100000", "bronze"),
-    c24: new Conquistas("um pouco de upgrades", `Comprou 5 upgrades`, Upgrades.numeroDeUpgrades, "Upgrades.numeroDeUpgrades >= 100000", "bronze"),
-    c25: new Conquistas("vários upgrades", `Comprou 10 upgrades`, Upgrades.numeroDeUpgrades, "Upgrades.numeroDeUpgrades >= 100000", "prata"),
-    c26: new Conquistas("muitos upgrades", `Comprou 50 upgrades`, Upgrades.numeroDeUpgrades, "Upgrades.numeroDeUpgrades >= 100000", "prata"),
-    c27: new Conquistas("upgrades demais", `Comprou 100 upgrades`, Upgrades.numeroDeUpgrades, "Upgrades.numeroDeUpgrades >= 100000", "ouro"),
-    c28: new Conquistas("upgrade que não acaba!", `Comprou 250 upgrades`, Upgrades.numeroDeUpgrades, "Upgrades.numeroDeUpgrades >= 100000", "ouro"),
+    c23: new Conquistas("Pequenos upgrades", `Comprou 1 upgrade`, Upgrades.numeroDeUpgrades, "Upgrades.numeroDeUpgrades >= 1", "bronze"),
+    c24: new Conquistas("Um pouco de upgrades", `Comprou 5 upgrades`, Upgrades.numeroDeUpgrades, "Upgrades.numeroDeUpgrades >= 5", "bronze"),
+    c25: new Conquistas("Vários upgrades", `Comprou 10 upgrades`, Upgrades.numeroDeUpgrades, "Upgrades.numeroDeUpgrades >= 10", "prata"),
+    c26: new Conquistas("Muitos upgrades", `Comprou 50 upgrades`, Upgrades.numeroDeUpgrades, "Upgrades.numeroDeUpgrades >= 50", "prata"),
+    c27: new Conquistas("Upgrades demais", `Comprou 100 upgrades`, Upgrades.numeroDeUpgrades, "Upgrades.numeroDeUpgrades >= 100", "ouro"),
+    c28: new Conquistas("Upgrade que não acaba!", `Comprou 250 upgrades`, Upgrades.numeroDeUpgrades, "Upgrades.numeroDeUpgrades >= 250", "ouro"),
+
+    c29: new Conquistas("Ei! Tá no mudo!", `Deixe no volume máximo e desative o volume`, SFXligado, "!SFXligado && document.getElementById('volumeSFX').value == '1'", "bronze"),
+    c30: new Conquistas("Do meu jeito", `Ficou 5min seguidos vendo as configurações`, randomStats.timeConfig, "randomStats.timeConfig >= 300", "bronze"),
+    c31: new Conquistas("Analista de dados", `Ficou 5min seguidos vendo as estatísticas`, randomStats.timeStatistic, "randomStats.timeStatistic >= 300", "bronze"),
+    c32: new Conquistas("VOU LIBERAR TODOS!", `Abriu a conquistas mais de 25 vezes`, randomStats.conquistasAbertas, "randomStats.conquistasAbertas >= 25", "bronze"),
+    c33: new Conquistas("Não confio na automação", `Salvou manualmente 10 vezes`, randomStats.saveManual, "randomStats.saveManual >= 10", "bronze"),
+    c34: new Conquistas("Me deixe comprar!!!", `Tentou comprar algo sem cookies suficientes 100 vezes`, randomStats.tentativasComprar, "randomStats.tentativasComprar >= 100", "prata"),
 
 }
+
+
 
 function carregarConquistas(){
     const campoConquistas = document.querySelector("#campoConquistas")
 
+
     Conquistas.conquistasTotais.forEach(conq =>{
         const container = document.createElement("div")
         container.classList.add("containerConquistas")
-        conq.feito ? "" : container.classList.add("conquistaBloqueada")
+        conq.completa ? "" : container.classList.add("conquistaBloqueada")
         container.innerHTML = `
             <img style="width: 60px" src="imagens/trofeu ${conq.categoria}.png">
-            <div >
+            <div>
                 <h5>${conq.nome}</h5>
                 <!-- <span>${conq.descricao}</span> !>
             </div>
         `
+
+        container.setAttribute("onmouseenter", `mostrarConquistaDetalhada(${JSON.stringify(conq)})`)
+        container.setAttribute("onmouseleave", `ocultarConquistaDetalhada()`)
 
         campoConquistas.appendChild(container)
     })
@@ -78,10 +103,8 @@ function carregarConquistas(){
 function verificarConquistas(){
     Conquistas.conquistasTotais.forEach((conq, i) =>{
         try {
-            if(!conq.feito && eval(conq.criterio)){
-                document.querySelectorAll(".containerConquistas")[i].classList.remove("conquistaBloqueada")
-                conq.feito = true
-                Conquistas.numeroConquistasLiberadas++
+            if(conq.completa == false && eval(conq.criterio) == true){
+                liberarConquista(conq, i)
             }
         } catch (error) {
             console.log("Erro na conquista", conq, ", ERRO:", error)
@@ -93,3 +116,66 @@ function verificarConquistas(){
         " (" + (Conquistas.numeroConquistasLiberadas/Conquistas.numeroConquistasTotais*100).toFixed(1) + "%)"
 }
 
+function liberarConquista(conquista, elementIndex){    
+
+    if(conquista.completa === true) return
+
+    document.querySelectorAll(".containerConquistas")[elementIndex].classList.remove("conquistaBloqueada")
+    conquista.completa = true
+    Conquistas.numeroConquistasLiberadas++
+    Conquistas.conquistasLiberadas.push(conquista)
+
+    const popup = `
+        <div class="popupConquista">
+            <p>Conquista desbloqueada!</p>
+            <div>
+                <img src="imagens/trofeu ${conquista.categoria}.png" alt="troféu">
+                <div>
+                    <h2>${conquista.nome}</h2>
+                    <p>${conquista.descricao}</p>
+                </div>
+            </div>
+        </div>
+    `
+
+    document.getElementById("campoPopupsConquistas").innerHTML += popup
+
+    setTimeout(() => {excluirPopupConquista()}, 5000)
+}
+
+function verificarConquistasInuteis(){
+    if(randomStats.timeConfig > 300){liberarConquista(infoConquistas.c30)}
+
+    if(randomStats.timeStatistic > 300){liberarConquista(infoConquistas.c31)}
+    
+    if(randomStats.conquistasAbertas > 25){liberarConquista(infoConquistas.c32)}
+    if(randomStats.saveManual > 10){liberarConquista(infoConquistas.c33)}
+    if(randomStats.tentativasComprar > 100){liberarConquista(infoConquistas.c34)}
+}
+
+function mostrarConquistaDetalhada(conq){
+    if(conq.completa === false || conq.completa === undefined){
+        // console.log(conq)
+        document.getElementById("descricaoConquista").style.display = "none"
+        return
+    }
+    
+    document.getElementById("descricaoConquista").style.display = "flex"
+
+    const imgTrofeu = document.getElementById("trofeuConquistaInfo")
+    const textNome = document.getElementById("nomeConquistaInfo")
+    const textDescricao = document.getElementById("descricaoConquistaInfo")
+
+    imgTrofeu.src = "imagens/trofeu " + conq.categoria +".png"
+    textNome.innerText = conq.nome
+    textDescricao.innerText = conq.descricao
+}
+
+function ocultarConquistaDetalhada(){
+    document.getElementById("descricaoConquista").style.display = "none"
+}
+
+function excluirPopupConquista(){
+    const primeiroPopup = document.getElementsByClassName("popupConquista")[0]
+    if(primeiroPopup){primeiroPopup.remove()}
+}

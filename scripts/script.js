@@ -5,6 +5,7 @@ let cliques = 0;
 let poderClique = 1;
 let SFXligado = true;
 
+
 // classe para upgrades
 class Upgrades {
   static numeroDeUpgrades = 0;
@@ -47,6 +48,7 @@ class Upgrades {
 
         Upgrades.contarUpgrades();
       } else {
+        randomStats.tentativasComprar++
         break;
       }
       alterarTextosPrecos()
@@ -110,6 +112,10 @@ function cookiesPorSeg() {
 
   document.getElementById("contador").innerHTML = cookies + " Cookies";
   document.getElementById("cookies/s").innerHTML = cookiesPS + " Cookies por segundo";
+
+  if(randomStats.elementOpened == "config"){randomStats.timeConfig++; randomStats.timeStatistic = 0}
+  if(randomStats.elementOpened == "estatistica"){randomStats.timeStatistic++; randomStats.timeConfig = 0}
+
 }
 
 function apagarProgresso() {

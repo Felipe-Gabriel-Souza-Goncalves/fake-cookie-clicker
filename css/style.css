@@ -171,6 +171,8 @@ button{
     height: 100vh;
     overflow: auto;
 }
+
+
 #divConfiguracoes::-webkit-scrollbar,
 #divEstatisticas::-webkit-scrollbar,
 #divConquistas::-webkit-scrollbar{
@@ -184,8 +186,8 @@ button{
         right: 0;
     }
 
-#popUpSalvar{display: none; user-select: none;}
-#popUpSalvar img{
+#popupSalvar{display: none; user-select: none;}
+#popupSalvar img{
     position: fixed;
     bottom: 30px;
     right: 30px;
