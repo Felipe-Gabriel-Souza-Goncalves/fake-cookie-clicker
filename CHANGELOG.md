@@ -1,4 +1,12 @@
-# Atualizações - Versão atual - [1.9]
+# Atualizações - Versão atual - [1.9.1]
+
+## Versão 1.9.1 - 22/12/2025
+- Correções de bugs:
+  - Conquistas recém desbloqueadas não aparecem descrição
+  - Bloco de descrição de conquistas ter leiaute inconsistente
+  - Não mudar visualmente se tiver cookies suficientes ou não
+- Otimizações de código
+- Fechar popup de conquista desbloqueada
 
 ## Versão 1.9 - 17/12/2025
 - 5 novas conquistas

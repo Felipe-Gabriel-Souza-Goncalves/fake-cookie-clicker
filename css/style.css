@@ -71,6 +71,12 @@ button{
             top: -10px;
         }
 
+.upgradeBloqueado{
+    background-color: gray;
+    color: black;
+    cursor: pointer;
+}
+
         table{
             font-size: 12px;
             border: 2px solid black;
@@ -129,7 +135,7 @@ button{
         #precoUp1,
         #precoUp2,
         #precoUp3{
-            background-color: rgba(70, 62, 59, 0.61);
+            /* background-color: rgba(70, 62, 59, 0.61); */
             height: 100%;
             display: flex;
             justify-content: center;

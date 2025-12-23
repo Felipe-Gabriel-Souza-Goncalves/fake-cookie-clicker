@@ -36,15 +36,16 @@
 
 #descricaoConquista {
   display: none;
-  position: sticky;
-  width: 100%;
+  position: fixed;
+  width: 45vw;
   color: white;
   z-index: 10;
   background: rgb(39, 38, 54);
   top: 0;
-  left: 0;
+  right: 0;
   padding: 8px;
   gap: 12px;
+  box-sizing: border-box;
 }
 #trofeuConquistaInfo{height:70px}
 
@@ -62,6 +63,7 @@
 }
 
 .popupConquista {
+  position: relative;
   background: rgba(49, 46, 62, 0.767);
   backdrop-filter: blur(4px);
   color: white;
@@ -70,6 +72,14 @@
   height: 80px;
   width: 320px;
   padding: 8px;
+}
+.fecharPopup{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 4px;
+  cursor: pointer;
+  user-select: none;
 }
 
 .popupConquista div:has(div){display: flex; justify-content: left; gap: 24px;}

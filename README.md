@@ -16,6 +16,7 @@ Feito para estudo das linguagens:
 - Estatísticas de jogo
 - Clicar para fazer pontos
 - Comprar "construções" (upgrades) para aumentar a pontuação
+- Liberar conquistas
 
 **_Não há premissa para fim de jogo_**
 

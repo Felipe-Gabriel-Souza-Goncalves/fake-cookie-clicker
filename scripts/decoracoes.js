@@ -1,13 +1,11 @@
 function decoracao(obj, idPreco) {
-  document.getElementById(idPreco).title = obj.preco + ` cookies necessários para comprar`;
+  const elementPreco = document.getElementById(idPreco)
+  elementPreco.title = obj.preco + ` cookies necessários para comprar`;
+  
   if (obj.preco > cookies) {
-    document.getElementById(idPreco).style.backgroundColor = "gray";
-    document.getElementById(idPreco).style.color = "lightgray";
-    document.getElementById(idPreco).style.opacity = "1";
-  } else {
-    document.getElementById(idPreco).style.backgroundColor = "transparent";
-    document.getElementById(idPreco).style.color = "black";
-    document.getElementById(idPreco).style.opacity = "1";
+    elementPreco.parentElement.classList.add("upgradeBloqueado")
+  } else if(elementPreco.parentElement.classList.contains("upgradeBloqueado")) {
+    elementPreco.parentElement.classList.remove("upgradeBloqueado")
   }
 }
 
@@ -67,7 +65,6 @@ function mudarNumUpgrades(id) {
 function alterarTextosPrecos() {
   Upgrades.upgradesExistentes.forEach((upgd, i) => {
     let tempPreco = structuredClone(upgd.preco)
-    // console.log("preco temporario", tempPreco)
     for (let j = 0; j < qntdUpgradeComprar; j++) {
         tempPreco = Math.floor(tempPreco * upgd.taxaPreco);
     }

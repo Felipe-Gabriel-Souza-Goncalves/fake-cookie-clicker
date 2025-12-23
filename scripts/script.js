@@ -12,7 +12,6 @@ class Upgrades {
   static upgradesExistentes = [];
 
   // Contar todos os upgrades criados quando o programa for rodado
-  // USO EM PROGRESSO!!
   static contarUpgrades() {
     this.numeroDeUpgrades++;
   }
@@ -38,27 +37,23 @@ class Upgrades {
         this.preco = Math.floor(this.preco * this.taxaPreco);
         this.quantidade++;
 
-        poderClique = 1;
-        cookiesPS = 0;
-
-        Upgrades.upgradesExistentes.forEach((element) => {
-          poderClique += element.cpc * element.quantidade;
-          cookiesPS += element.cps * element.quantidade;
-        });
+        poderClique += this.cpc
+        cookiesPS += this.cps
 
         Upgrades.contarUpgrades();
+        alterarTextosPrecos()
+
       } else {
         randomStats.tentativasComprar++
         break;
       }
-      alterarTextosPrecos()
-
 
       document.getElementById("contador").innerHTML = cookies + " Cookies";
 
       // mudar o html dos elementos passados no parametro
       document.getElementById(idQntd).innerHTML = this.quantidade;
       document.getElementById(idPreco).innerHTML = this.preco + " cookies";
+      decoracao(this, idPreco)
     }
   }
 }
@@ -116,6 +111,10 @@ function cookiesPorSeg() {
   if(randomStats.elementOpened == "config"){randomStats.timeConfig++; randomStats.timeStatistic = 0}
   if(randomStats.elementOpened == "estatistica"){randomStats.timeStatistic++; randomStats.timeConfig = 0}
 
+  Upgrades.upgradesExistentes.forEach((upgd,i) =>{
+    decoracao(upgd, `precoUp${i+1}`)
+  })
+
 }
 
 function apagarProgresso() {
@@ -149,7 +148,7 @@ function carregarTabela() {
                 </button>
             </td>
             <td class="qntUp" id="qntUp${index}">${upgrade.quantidade}</td>
-            <td class="precoCompra"><h2 id="precoUp${index}">${upgrade.preco} cookies</h2></td>
+            <td class="precoCompra" class="upgradeBloqueado"><h2 id="precoUp${index}">${upgrade.preco} cookies</h2></td>
         `;
 
     tabelaProdutos.appendChild(tr);

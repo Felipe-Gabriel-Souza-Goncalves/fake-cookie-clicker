@@ -81,7 +81,7 @@ function carregarConquistas(){
     const campoConquistas = document.querySelector("#campoConquistas")
 
 
-    Conquistas.conquistasTotais.forEach(conq =>{
+    Conquistas.conquistasTotais.forEach((conq, i) =>{
         const container = document.createElement("div")
         container.classList.add("containerConquistas")
         conq.completa ? "" : container.classList.add("conquistaBloqueada")
@@ -93,7 +93,7 @@ function carregarConquistas(){
             </div>
         `
 
-        container.setAttribute("onmouseenter", `mostrarConquistaDetalhada(${JSON.stringify(conq)})`)
+        container.setAttribute("onmouseenter", `mostrarConquistaDetalhada(${i})`)
         container.setAttribute("onmouseleave", `ocultarConquistaDetalhada()`)
 
         campoConquistas.appendChild(container)
@@ -127,6 +127,7 @@ function liberarConquista(conquista, elementIndex){
 
     const popup = `
         <div class="popupConquista">
+        <span class="fecharPopup" onclick="this.parentElement.remove()">x</span>
             <p>Conquista desbloqueada!</p>
             <div>
                 <img src="imagens/trofeu ${conquista.categoria}.png" alt="troféu">
@@ -153,10 +154,12 @@ function verificarConquistasInuteis(){
     if(randomStats.tentativasComprar > 100){liberarConquista(infoConquistas.c34)}
 }
 
-function mostrarConquistaDetalhada(conq){
+function mostrarConquistaDetalhada(index){
+    const conq = Conquistas.conquistasTotais[index]
+
     if(conq.completa === false || conq.completa === undefined){
-        // console.log(conq)
         document.getElementById("descricaoConquista").style.display = "none"
+
         return
     }
     

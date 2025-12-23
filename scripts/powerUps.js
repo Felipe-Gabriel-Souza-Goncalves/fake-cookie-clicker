@@ -13,6 +13,10 @@ class Powerup {
     Powerup.ordemPowerups.push(this)
   }
 
+  comprarPowerup(){
+    
+  }
+
   static comprado(index){
     if(!index) return
     if(index > this.ordemPowerups.length) return
@@ -21,11 +25,3 @@ class Powerup {
     this.numComprados++
   }
 }
-
-// const powerups = {
-//   p1: new Powerup("2x -> +1 cookies/seg", 150, "upgrade1.cps*2", true),
-//   p2: new Powerup("2x ", 150, "upgrade1.cps*2", true),
-//   p3: new Powerup("2x cookies", 150, "upgrade1.cps*2", true),
-//   p4: new Powerup("2x cookies", 150, "upgrade1.cps*2", true),
-//   p5: new Powerup("2x cookies", 150, "upgrade1.cps*2", true),
-// }
