@@ -14,3 +14,7 @@
     border-radius: 5px;
     font-size: 1.4em;
 }
+
+.botaoFecharDiv{
+    cursor: pointer;
+}

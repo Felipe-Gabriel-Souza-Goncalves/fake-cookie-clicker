@@ -1,4 +1,5 @@
 function decoracao(obj, idPreco) {
+  
   const elementPreco = document.getElementById(idPreco)
   elementPreco.title = obj.preco + ` cookies necessários para comprar`;
   
@@ -59,16 +60,19 @@ function mudarNumUpgrades(id) {
     }
   }
 
-  alterarTextosPrecos()
+  Upgrades.upgradesExistentes.forEach((upgd, i) =>{
+    alterarTextosPrecos(upgd.preco, upgd.taxaPreco, (i+1))
+  })
 }
 
-function alterarTextosPrecos() {
-  Upgrades.upgradesExistentes.forEach((upgd, i) => {
-    let tempPreco = structuredClone(upgd.preco)
-    for (let j = 0; j < qntdUpgradeComprar; j++) {
-        tempPreco = Math.floor(tempPreco * upgd.taxaPreco);
+function alterarTextosPrecos(preco, taxaPreco, i) {
+    let sumPrecos = preco
+    for (let j = 1; j < qntdUpgradeComprar; j++) {
+        preco = Math.floor(preco * taxaPreco);
+        sumPrecos+= preco
     }
 
-    document.getElementById("precoUp"+parseInt(i+1)).innerText = tempPreco + " cookies"
-  });
+    document.getElementById("precoUp"+i).innerText = sumPrecos + " cookies"
+    decoracao({preco: sumPrecos}, "precoUp"+i)
+  // });
 }

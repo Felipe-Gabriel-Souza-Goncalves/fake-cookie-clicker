@@ -1,4 +1,12 @@
-# Atualizações - Versão atual - [1.9.1]
+# Atualizações - Versão atual - [1.9.2]
+
+## Versão 1.9.2 - 26/12/2025
+- Alteração de visual das seções de navegação
+- Correções de conquistas não desbloqueadas
+- Correções de visual dos preços de multiplicadores 10x ou 100x
+- Leves alterações de código
+- Progresso em nova funcionalidade de powerups
+- Mudança de posição da tabela de upgrades
 
 ## Versão 1.9.1 - 22/12/2025
 - Correções de bugs:

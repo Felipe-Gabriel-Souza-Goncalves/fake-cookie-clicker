@@ -30,7 +30,7 @@ class Upgrades {
 
   // função para comprar upgrade passando id de 2 elementos HTML referente a quantidade/preco do upgrade
 
-  comprarUpgrade(idQntd, idPreco) {
+  comprarUpgrade(idQntd, idPreco, index) {
     for (let i = 0; i < qntdUpgradeComprar; i++) {
       if (cookies >= this.preco) {
         cookies -= this.preco;
@@ -41,8 +41,7 @@ class Upgrades {
         cookiesPS += this.cps
 
         Upgrades.contarUpgrades();
-        alterarTextosPrecos()
-
+        alterarTextosPrecos(this.preco, this.taxaPreco, index)
       } else {
         randomStats.tentativasComprar++
         break;
@@ -52,8 +51,6 @@ class Upgrades {
 
       // mudar o html dos elementos passados no parametro
       document.getElementById(idQntd).innerHTML = this.quantidade;
-      document.getElementById(idPreco).innerHTML = this.preco + " cookies";
-      decoracao(this, idPreco)
     }
   }
 }
@@ -112,7 +109,7 @@ function cookiesPorSeg() {
   if(randomStats.elementOpened == "estatistica"){randomStats.timeStatistic++; randomStats.timeConfig = 0}
 
   Upgrades.upgradesExistentes.forEach((upgd,i) =>{
-    decoracao(upgd, `precoUp${i+1}`)
+    alterarTextosPrecos(upgd.preco, upgd.taxaPreco, (i+1))
   })
 
 }
@@ -143,8 +140,10 @@ function carregarTabela() {
     tr.innerHTML = `
             <td class="nomeUpgrade">
                 <button 
-                    class="botaoCompraUpgrade" 
-                    onclick="upgrade${index}.comprarUpgrade('qntUp${index}', 'precoUp${index}')">${upgrade.nome}
+                    class="botaoMudarNumUpgrade" 
+                    onclick="upgrade${index}.comprarUpgrade('qntUp${index}', 'precoUp${index}', ${index})">
+                    
+                    ${upgrade.nome}
                 </button>
             </td>
             <td class="qntUp" id="qntUp${index}">${upgrade.quantidade}</td>

@@ -37,7 +37,7 @@
 #descricaoConquista {
   display: none;
   position: fixed;
-  width: 45vw;
+  width: 50vw;
   color: white;
   z-index: 10;
   background: rgb(39, 38, 54);
